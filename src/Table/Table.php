@@ -30,7 +30,7 @@ abstract class Table extends DataTable {
      * @var Column[]
      */
     private array $columns = [];
-    private ?Filter $filter;
+    private ?Filter $filter = null;
 
     public function __construct() {
         if ($this->filterClass) {
