@@ -5,7 +5,7 @@ namespace WKorbecki\Table\Filter;
 use Illuminate\Support\Facades\Session;
 
 abstract class Filter {
-    private static string $name;
+    private static ?string $name = null;
     private string $customName = '';
     /**
      * @var Element[]
