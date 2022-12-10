@@ -42,13 +42,13 @@ abstract class Table extends DataTable {
     public function datatableQuery(QueryBuilder $query) : DataTableAbstract {
         $this->filterApply($query);
 
-        return $this->datatable(\datatables()->query($query));
+        return $this->datatable(datatables()->query($query));
     }
 
     public function datatableEloquent(EloquentBuilder $query) : DataTableAbstract {
         $this->filterApply($query);
 
-        return $this->datatable(\datatables()->eloquent($query));
+        return $this->datatable(datatables()->eloquent($query));
     }
 
     private function datatable(DataTableAbstract $datatable) : DataTableAbstract {
