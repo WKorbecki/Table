@@ -102,7 +102,7 @@ abstract class Table extends DataTable {
 
     private function buttons() : array {
         $buttons = [
-            Button::make('reload'),
+//            Button::make('reload'),
         ];
 
         if ($this->filter) {
