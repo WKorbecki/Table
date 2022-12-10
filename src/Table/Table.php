@@ -26,6 +26,7 @@ abstract class Table extends DataTable {
     protected ?string $filterClass = null;
     protected ?string $filterButtonAction = null;
     protected ?string $filterButtonName = null;
+    protected ?string $reloadButtonName = 'Button';
 
     /**
      * @var Column[]
@@ -103,7 +104,7 @@ abstract class Table extends DataTable {
 
     private function buttons() : array {
         $buttons = [
-            Button::make()->action('function(e, table) { table.ajax.reload(); }')->text('Reload'),
+            Button::make()->action('function(e, table) { table.ajax.reload(); }')->text($this->reloadButtonName),
         ];
 
         if ($this->filter) {
