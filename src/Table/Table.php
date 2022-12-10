@@ -22,9 +22,9 @@ abstract class Table extends DataTable {
     protected int $searchDelay = 350;
     protected int $orderIndex = 1;
     protected string $orderDirection = 'desc';
-    protected ?string $filterClass;
-    protected ?string $filterButtonAction;
-    protected string $filterButtonName;
+    protected ?string $filterClass = null;
+    protected ?string $filterButtonAction = null;
+    protected ?string $filterButtonName = null;
 
     /**
      * @var Column[]
