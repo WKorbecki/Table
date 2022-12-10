@@ -86,6 +86,7 @@ abstract class Table extends DataTable {
         $builder->searchDelay($this->searchDelay);
         $builder->orderBy($this->orderIndex, $this->orderDirection);
         $builder->buttons($this->buttons());
+        $builder->postAjax();
 
         return $builder;
     }
