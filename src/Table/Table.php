@@ -40,13 +40,13 @@ abstract class Table extends DataTable {
     }
 
     public function datatableQuery(QueryBuilder $query) : DataTableAbstract {
-        $this->filter($query);
+        $this->filterApply($query);
 
         return $this->datatable(\datatables()->query($query));
     }
 
     public function datatableEloquent(EloquentBuilder $query) : DataTableAbstract {
-        $this->filter($query);
+        $this->filterApply($query);
 
         return $this->datatable(\datatables()->eloquent($query));
     }
@@ -64,7 +64,11 @@ abstract class Table extends DataTable {
         return $datatable->rawColumns($raw);
     }
 
-    private function filter(& $query) {
+    public function filter() : ?Filter {
+        return $this->filter;
+    }
+
+    private function filterApply(& $query) {
         if ($this->filter) {
             $this->filter->filter($query);
         }
