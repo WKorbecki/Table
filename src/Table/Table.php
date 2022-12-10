@@ -75,7 +75,7 @@ abstract class Table extends DataTable {
     }
 
     public function html() : Builder {
-        $builder = $this->getHtmlBuilder();
+        $builder = $this->bulder();
         $builder->setTableId(Str::lower($this->name) . '-table');
         $builder->columns(collect($this->columns)->map(static fn (Column $column) => $column->make())->toArray());
         $builder->searching($this->searching);
