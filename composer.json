@@ -1,0 +1,28 @@
+{
+    "name": "wkorbecki/table",
+    "description": "A library to management and display table for laravel extended from yajra/laravel-datatables",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Korbecki",
+            "email": "wojciechkorbecki@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "WKorbecki\\Form\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "laravel/framework": "^8.75",
+        "yajra/laravel-datatables-oracle": "^9.21",
+        "yajra/laravel-datatables-html": "^4.41",
+        "yajra/laravel-datatables-buttons": "^4.13"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
