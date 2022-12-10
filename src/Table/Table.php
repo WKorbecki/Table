@@ -52,7 +52,7 @@ abstract class Table extends DataTable {
         return $this->datatable(datatables()->eloquent($query));
     }
 
-    private function datatable(QueryDataTable $datatable) : QueryDataTable {
+    public function datatable(QueryDataTable $datatable) : QueryDataTable {
         $raw = [];
 
         foreach ($this->columns as $column) {
