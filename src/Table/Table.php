@@ -76,18 +76,26 @@ abstract class Table extends DataTable {
     }
 
     public function html() : Builder {
+        $this->lengthChange = $this->paging ? $this->lengthChange : false;
+
         $builder = $this->builder();
         $builder->setTableId(Str::lower($this->name) . '-table');
         $builder->columns(collect($this->columns)->map(static fn (Column $column) => $column->make())->toArray());
         $builder->searching($this->searching);
         $builder->paging($this->paging);
-        $builder->lengthChange($this->paging ? $this->lengthChange : false);
+        $builder->lengthChange($this->lengthChange);
         $builder->stateSave($this->stateSave);
         $builder->fixedHeader($this->fixedHeader);
         $builder->searchDelay($this->searchDelay);
         $builder->orderBy($this->orderIndex, $this->orderDirection);
         $builder->buttons($this->buttons());
         $builder->postAjax();
+        $builder->dom("<'card-table-header'<'row align-items-center'<'col-12 col-sm-6 col-md-3 order-0'".($this->lengthChange ? 'l' : '').">
+        <'col-12 col-md-6 order-2 order-md-1 text-center'B>
+        <'col-12 col-sm-6 col-md-3 order-1 order-md-2'" . ($this->searching ? 'f' : '') . ">>>
+        <'table-responsive't>
+        <'card-table-footer'<'row align-items-center'<'col-sm-12 col-md-5'i>
+        <'col-sm-12 col-md-7'".($this->paging ? 'p' : '').">>>r");
 
         return $builder;
     }
