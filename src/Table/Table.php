@@ -77,6 +77,7 @@ abstract class Table extends DataTable {
 
     public function html() : Builder {
         $this->lengthChange = $this->paging ? $this->lengthChange : false;
+        $buttons = $this->buttons();
 
         $builder = $this->builder();
         $builder->setTableId(Str::lower($this->name) . '-table');
@@ -88,10 +89,10 @@ abstract class Table extends DataTable {
         $builder->fixedHeader($this->fixedHeader);
         $builder->searchDelay($this->searchDelay);
         $builder->orderBy($this->orderIndex, $this->orderDirection);
-        $builder->buttons($this->buttons());
+        $builder->buttons($buttons);
         $builder->postAjax();
         $builder->dom("<'card-table-header'<'row align-items-center'<'col-12 col-sm-6 col-md-3 order-0'".($this->lengthChange ? 'l' : '').">
-        <'col-12 col-md-6 order-2 order-md-1 text-center'B>
+        <'col-12 col-md-6 order-2 order-md-1 text-center'" . ($buttons ? 'B' : '') . ">
         <'col-12 col-sm-6 col-md-3 order-1 order-md-2'" . ($this->searching ? 'f' : '') . ">>>
         <'table-responsive't>
         <'card-table-footer'<'row align-items-center'<'col-sm-12 col-md-5'i>
@@ -102,11 +103,11 @@ abstract class Table extends DataTable {
 
     private function buttons() : array {
         $buttons = [
-//            Button::make('reload'),
+            Button::make()->action('function(e, table) { table.ajax.reload(); }')->text('Reload'),
         ];
 
         if ($this->filter) {
-            Button::make('filter')->action($this->filterButtonAction)->name($this->filterButtonName);
+            $buttons[] = Button::make()->action($this->filterButtonAction)->text($this->filterButtonName);
         }
 
         return [...$buttons, ... $this->buttons];
