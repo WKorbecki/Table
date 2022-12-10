@@ -7,6 +7,7 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 use WKorbecki\Table\Filter\Filter;
 use Yajra\DataTables\DataTableAbstract;
+use Yajra\DataTables\QueryDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Html\Button;
@@ -51,7 +52,7 @@ abstract class Table extends DataTable {
         return $this->datatable(datatables()->eloquent($query));
     }
 
-    private function datatable(DataTableAbstract $datatable) : DataTableAbstract {
+    private function datatable(QueryDataTable $datatable) : QueryDataTable {
         $raw = [];
 
         foreach ($this->columns as $column) {
