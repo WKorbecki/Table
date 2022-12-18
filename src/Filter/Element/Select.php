@@ -82,7 +82,7 @@ class Select extends Element {
     }
 
     private function isOptionSelected($value, $default) : bool {
-        return $this->multiple ? in_array($value, $default) : $value == $default;
+        return $this->multiple ? in_array((string) $value, $default) : (string) $value == (string) $default;
     }
 
     private function options() : array {
