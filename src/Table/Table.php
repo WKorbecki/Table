@@ -108,7 +108,7 @@ abstract class Table extends DataTable {
         ];
 
         if ($this->filter) {
-            $buttons[] = Button::make()->attr(['data-bs-toggle' => 'modal', 'data-bs-target' => $this->filter->name()])->text($this->filterButtonName);
+            $buttons[] = Button::make()->attr(['data-bs-toggle' => 'modal', 'data-bs-target' => 'filterModal' . $this->filter->name()])->text($this->filterButtonName);
         }
 
         return [...$buttons, ... $this->buttons];
