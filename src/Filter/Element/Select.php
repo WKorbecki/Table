@@ -43,9 +43,16 @@ class Select extends Element {
     }
 
     public function render($default) : string {
+        $parameters = [];
+
+        if ($this->multiple) {
+            $parameters['name'] = 'filter['.$this->id.'][]';
+            $parameters['multiple'] = 'multiple';
+        }
+
         return implode("\n", [
             '<label>'.$this->title.'</label>',
-            '<select '.$this->parameters().'>',
+            '<select '.$this->parameters($parameters).'>',
             $this->renderOptions($this->options(), $default ?? $this->default),
             '</select>',
         ]);
