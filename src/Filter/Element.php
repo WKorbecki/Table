@@ -48,22 +48,26 @@ abstract class Element {
 
     abstract public function isUsed($value) : bool;
 
-    protected function parameters() : string {
-        $parameters = [
-            'id="filer_'.$this->id.'"',
-            'name="filter['.$this->id.']"',
-            'class="'.$this->class.'"',
-        ];
+    protected function parameters(array $parameters = []) : string {
+        $this->addParameter($parameters, 'id', 'filer_'.$this->id);
+        $this->addParameter($parameters, 'name', 'filer['.$this->id.']');
+        $this->addParameter($parameters, 'class', $this->id);
+        $this->addParameters($parameters, $this->attr);
+        $this->addParameters($parameters, $this->data, 'data-');
 
-        foreach ($this->attr as $key => $value) {
-            $parameters[] = $key.'="'.$value.'"';
+        return collect($parameters)->map(static fn ($value, $key) => $key . '="' . $value . '"')->implode(' ');
+    }
+
+    protected final function addParameter(array & $parameters, string $key, $value, bool $overwrite = false) {
+        if (!isset($parameters[$key]) || $overwrite) {
+            $parameters[$key] = $value;
         }
+    }
 
-        foreach ($this->data as $key => $value) {
-            $parameters[] = 'data-'.$key.'="'.$value.'"';
+    protected final function addParameters(array & $parameters, array $new_parameters, string $prefix = '', bool $overwrite = false) {
+        foreach ($new_parameters as $key => $value) {
+            $this->addParameter($parameters, $prefix . $key, $value, $overwrite);
         }
-
-        return implode(' ', $parameters);
     }
 
     protected final function where(& $query, $operator, $search) {
