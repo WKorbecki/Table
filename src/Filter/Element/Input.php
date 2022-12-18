@@ -44,7 +44,7 @@ class Input extends Element {
 
     public function render($default): string {
         return implode("\n", [
-            '<label>'.$this->title.'<label>',
+            '<label>'.$this->title.'</label>',
             '<input type="'.$this->type.'" '.$this->parameters().' value="'.($default ?? $this->default).'">'
         ]);
     }

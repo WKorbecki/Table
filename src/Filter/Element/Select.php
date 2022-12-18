@@ -44,7 +44,7 @@ class Select extends Element {
 
     public function render($default) : string {
         return implode("\n", [
-            '<label>'.$this->title.'<label>',
+            '<label>'.$this->title.'</label>',
             '<select '.$this->parameters().'>',
             $this->renderOptions($this->options(), $default ?? $this->default),
             '</select>',
