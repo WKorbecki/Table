@@ -74,7 +74,7 @@ class Select extends Element {
                 ]);
             }
             else {
-                $_options[] = '<option value="'.$key.'"'.($this->isOptionSelected($value, $default) ? ' selected="selected"' : '').'>'.$value.'</option>';
+                $_options[] = '<option value="'.$key.'"'.($this->isOptionSelected($key, $default) ? ' selected="selected"' : '').'>'.$value.'</option>';
             }
         }
 
