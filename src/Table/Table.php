@@ -92,7 +92,7 @@ abstract class Table extends DataTable {
         $builder->orderBy($this->orderIndex, $this->orderDirection);
         $builder->buttons($buttons);
         $builder->postAjax();
-        $builder->dom("<'card'<'card-header'<'row align-items-center'<'col-12 col-sm-6 col-md-3 order-0'".($this->lengthChange ? 'l' : '').">
+        $builder->dom("<'card card-table'<'card-header'<'row align-items-center'<'col-12 col-sm-6 col-md-3 order-0'".($this->lengthChange ? 'l' : '').">
         <'col-12 col-md-6 order-2 order-md-1 text-center'" . ($buttons ? 'B' : '') . ">
         <'col-12 col-sm-6 col-md-3 order-1 order-md-2'" . ($this->searching ? 'f' : '') . ">>>
         <'card-body table-responsive't>
