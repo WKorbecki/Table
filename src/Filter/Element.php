@@ -49,8 +49,8 @@ abstract class Element {
     abstract public function isUsed($value) : bool;
 
     protected function parameters(array $parameters = []) : string {
-        $this->addParameter($parameters, 'id', 'filer_'.$this->id);
-        $this->addParameter($parameters, 'name', 'filer['.$this->id.']');
+        $this->addParameter($parameters, 'id', 'filter_'.$this->id);
+        $this->addParameter($parameters, 'name', 'filter['.$this->id.']');
         $this->addParameter($parameters, 'class', $this->id);
         $this->addParameters($parameters, $this->attr);
         $this->addParameters($parameters, $this->data, 'data-');
