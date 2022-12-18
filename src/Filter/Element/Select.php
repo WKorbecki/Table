@@ -74,11 +74,15 @@ class Select extends Element {
                 ]);
             }
             else {
-                $_options[] = '<option value="'.$key.'"'.($default == $value ? ' selected="selected"' : '').'>'.$value.'</option>';
+                $_options[] = '<option value="'.$key.'"'.($this->isOptionSelected($value, $default) ? ' selected="selected"' : '').'>'.$value.'</option>';
             }
         }
 
         return implode("\n", $_options);
+    }
+
+    private function isOptionSelected($value, $default) : bool {
+        return $this->multiple ? in_array($value, $default) : $value == $default;
     }
 
     private function options() : array {
