@@ -92,12 +92,12 @@ abstract class Table extends DataTable {
         $builder->orderBy($this->orderIndex, $this->orderDirection);
         $builder->buttons($buttons);
         $builder->postAjax();
-        $builder->dom("<'card-table-header'<'row align-items-center'<'col-12 col-sm-6 col-md-3 order-0'".($this->lengthChange ? 'l' : '').">
+        $builder->dom("<'card'<'card-header'<'row align-items-center'<'col-12 col-sm-6 col-md-3 order-0'".($this->lengthChange ? 'l' : '').">
         <'col-12 col-md-6 order-2 order-md-1 text-center'" . ($buttons ? 'B' : '') . ">
         <'col-12 col-sm-6 col-md-3 order-1 order-md-2'" . ($this->searching ? 'f' : '') . ">>>
-        <'table-responsive't>
-        <'card-table-footer'<'row align-items-center'<'col-sm-12 col-md-5'i>
-        <'col-sm-12 col-md-7'".($this->paging ? 'p' : '').">>>r");
+        <'card-body table-responsive't>
+        <'card-footer'<'row align-items-center'<'col-sm-12 col-md-5'i>
+        <'col-sm-12 col-md-7'".($this->paging ? 'p' : '').">>>>r");
 
         return $builder;
     }
@@ -108,7 +108,20 @@ abstract class Table extends DataTable {
         ];
 
         if ($this->filter) {
-            $buttons[] = Button::make()->attr(['data-bs-toggle' => 'modal', 'data-bs-target' => 'filterModal' . $this->filter->name()])->text($this->filterButtonName);
+            $button = Button::make()->text($this->filterButtonName);
+
+            if ($this->filterButtonAction) {
+                $button = $button->action($this->filterButtonAction);
+            }
+            else {
+                $button = $button->attr([
+                    'type' => 'button',
+                    'data-bs-toggle' => 'modal',
+                    'data-bs-target' => '#filterModal' . $this->filter->name(),
+                ]);
+            }
+
+            $buttons[] = $button;
         }
 
         return [...$buttons, ... $this->buttons];
