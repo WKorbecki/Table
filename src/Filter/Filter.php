@@ -37,6 +37,7 @@ abstract class Filter {
 
     public function render() : string {
         return view($this->view, [
+            'name' => $this->name(),
             'fields' => collect($this->elements)
                 ->map(fn (Element $element) => $element
                     ->render($this->elementValue($element)))
