@@ -51,7 +51,7 @@ abstract class Element {
     protected function parameters(array $parameters = []) : string {
         $this->addParameter($parameters, 'id', 'filter_'.$this->id);
         $this->addParameter($parameters, 'name', 'filter['.$this->id.']');
-        $this->addParameter($parameters, 'class', $this->id);
+        $this->addParameter($parameters, 'class', $this->class);
         $this->addParameters($parameters, $this->attr);
         $this->addParameters($parameters, $this->data, 'data-');
 
